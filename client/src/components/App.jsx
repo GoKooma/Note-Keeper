@@ -1,6 +1,7 @@
 import React from 'react';
 import NotesList from './NotesList.jsx';
 import Write from './Write.jsx'
+import axios from 'axios';
 
 class App extends React.Component {
   constructor(props) {
@@ -12,6 +13,22 @@ class App extends React.Component {
     }
     this.handleMyNotesTab = this.handleMyNotesTab.bind(this);
     this.handleWriteTab = this.handleWriteTab.bind(this);
+    this.fetchNotes = this.fetchNotes.bind(this);
+  }
+
+  componentDidMount() {
+    this.fetchNotes();
+  }
+
+  fetchNotes() {
+    axios.get('/api/notes')
+      .then((notes) => {
+        console.log(notes)
+        this.setState({
+          notes: notes.data
+        })
+      })
+      .catch(err => console.error(err))
   }
 
   handleMyNotesTab(e) {
@@ -30,8 +47,8 @@ class App extends React.Component {
 
   render() {
     let myNotes, writeForm;
-    this.state.myNotesTabVisibility ? myNotes = <NotesList notes={this.state.notes}/> : null;
-    this.state.writeTabVisibility ? writeForm = <Write /> : null;
+    this.state.myNotesTabVisibility ? myNotes = <NotesList notes={this.state.notes} /> : null;
+    this.state.writeTabVisibility ? writeForm = <Write fetchNotes={this.fetchNotes} /> : null;
 
     return (
       <div className="notekeeper">
