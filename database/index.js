@@ -1,16 +1,14 @@
-const { Pool } = require('pg');
-// const Sequelize = require("sequelize");
+const mongoose = require('mongoose');
 
-const pool = new Pool({
-  host: 'localhost',
-  port: 5432,
-  database: 'note_keeper',
-  user: 'postgres',
-  password: 'leftrocks'
-});
+// Connect to mongodb
+mongoose.connect('mongodb://localhost/note-keeper', { useNewUrlParser: true });
+mongoose.set('useCreateIndex', true);
 
-pool.connect() 
-  .then(() => console.log("PostgreSQL CONNECTION SUCCESSFUL"))
-  .catch(err => console.error(err));
+const db = mongoose.connection;
 
-module.exports = pool;
+// If connection fails, return error message
+db.on('error',(err) => console.error(err));
+// If connection is successful, return success message
+db.once('open', () => console.log('CONNECTED TO MONGODB!'))
+
+module.exports = db;
