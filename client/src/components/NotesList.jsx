@@ -6,7 +6,11 @@ const NotesList = (props) => {
     <div className="notes-list">
       {props.notes.map((note) => {
         return (
-          <NoteEntry title={note.title} content={note.content} />
+          <NoteEntry 
+            title={note.title} 
+            content={note.content} 
+            date={note.date} 
+          />
         )
       })}
     </div>
