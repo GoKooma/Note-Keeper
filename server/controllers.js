@@ -26,8 +26,7 @@ module.exports = {
   },
   // create note in database to have it persist
   postNote: (req, res) => {
-    let { content } = req.body;
-    db.post(content, (err) => {
+    db.post(req.body, (err) => {
       if (err) {
         console.error(err);
         res.status(404).send(err);
