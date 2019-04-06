@@ -3,6 +3,10 @@ const db = require('./index.js');
 
 // Create data schema
 const notesSchema = new mongoose.Schema({
+  title: {
+    type: String,
+    required: true
+  },
   content: {
     type: String,
     required: true
