@@ -4,6 +4,7 @@ const NoteEntry = (props) => {
   return (
     <div className="note-entry">
       <div className="title">{props.title}</div>
+      <div className="note-date">{props.date}</div>
       <div className="content">{props.content}</div>
     </div>
   )
