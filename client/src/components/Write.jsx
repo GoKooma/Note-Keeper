@@ -1,11 +1,13 @@
 import React from 'react';
+import axios from 'axios';
 
 class Write extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       title: '',
-      content: ''
+      content: '',
+      posted: ''
     }
     this.updateTitle = this.updateTitle.bind(this);
     this.updateContent = this.updateContent.bind(this);
@@ -26,11 +28,32 @@ class Write extends React.Component {
 
   handlePost(e) {
     e.preventDefault();
-    console.log("POST")
-    this.setState({
-      title: '',
-      content: ''
-    })
+    axios
+      .post('api/note', {
+        title: this.state.title,
+        content: this.state.content
+      })
+      .then((res) => {
+        console.log(res);
+        this.setState({
+          title: '',
+          content: '',
+          posted: 'Posted!'
+        });
+        this.props.fetchNotes();
+      })
+      .catch(err => {
+        console.error(err);
+        this.setState({
+          posted: 'Posting Failed...'
+        })
+      })
+
+      setTimeout(() => {
+        this.setState({ posted: '' })
+      }, 5000)
+    
+      console.log("POST")
   }
 
   render() {
@@ -51,6 +74,7 @@ class Write extends React.Component {
           />
           <button type="submit">Post</button>
         </form>
+        {this.state.posted}
       </div>
     )
   }
