@@ -52,7 +52,7 @@ class Write extends React.Component {
 
       setTimeout(() => {
         this.setState({ posted: '' })
-      }, 5000)
+      }, 3500)
     
   }
 
@@ -61,16 +61,15 @@ class Write extends React.Component {
       <div className={FormStyle.formWrapper}>
         <div className={FormStyle.postStatus}>{this.state.posted}</div>
         <form className={FormStyle.journal} onSubmit={this.handlePost}>
-          <input
+          <textarea
             className={FormStyle.formTitle}
             type="text"
             value={this.state.title}
             onChange={this.updateTitle}
             placeholder="Title"
           />
-          <input
+          <textarea
             className={FormStyle.formContent}
-            type="text"
             value={this.state.content}
             onChange={this.updateContent}
             placeholder="Note"
