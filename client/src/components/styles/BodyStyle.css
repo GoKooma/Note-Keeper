@@ -13,10 +13,11 @@
 }
 
 .navBar {
+  width: 85%;
   padding: 10px;
   display: flex;
   flex-direction: row;
-  border-bottom-style: black solid 2px;
+  border-bottom: 2px solid #f2f2f2;
 }
 
 .tab {
@@ -24,6 +25,13 @@
   width: 100px;
   height: 20px;
   font-size: 15px;
+  cursor: pointer;
+}
+
+.tab:focus {
+  outline: none;
+  border-top: 2px solid #ffba75;
+  padding-top: 2px;
 }
 
 .contentBody {
