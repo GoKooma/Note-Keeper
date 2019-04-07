@@ -3,8 +3,8 @@
   border: 5px;
   background-color: #edf2f9;
   width: 80%;
-  max-width: 700px;
   margin: 10px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 .noteEntry {
@@ -19,6 +19,7 @@
   font-size: 22px;
   font-weight: bold;
   background-color: #f7faff;
+  font-family: inherit;
 }
 
 .noteDate {
@@ -36,6 +37,7 @@
   padding-left: 8px;
   min-height: 100px;
   background-color: #f7faff;
+  font-family: inherit;
 }
 
 .noteEntryControl {
@@ -54,12 +56,10 @@
   height: 100%;
   text-align: center;
   vertical-align: text-top;
+  cursor: pointer;
 }
 
-.editNote {
-  color: gray;
-}
-
-.deleteNote {
-  color: orange;
+.button:focus {
+  outline: none;
+  border: 1px solid #f2f2f2;
 }
