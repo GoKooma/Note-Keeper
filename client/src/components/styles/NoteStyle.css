@@ -1,0 +1,65 @@
+.noteEntryWrapper {
+  padding: 10px;
+  border: 5px;
+  background-color: #edf2f9;
+  width: 80%;
+  max-width: 700px;
+  margin: 10px;
+}
+
+.noteEntry {
+  display: flex;
+  flex-direction: column;
+}
+
+.noteTitle {
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 8px;
+  font-size: 22px;
+  font-weight: bold;
+  background-color: #f7faff;
+}
+
+.noteDate {
+  font-size: 12px;
+  padding-left: 8px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  color: gray;
+}
+
+.noteContent {
+  font-size: 20px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 8px;
+  min-height: 100px;
+  background-color: #f7faff;
+}
+
+.noteEntryControl {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin: 10px;
+  height: 30px;
+}
+
+.button {
+  border: none;
+  margin: 5px;
+  padding: 5px;
+  width: 70px;
+  height: 100%;
+  text-align: center;
+  vertical-align: text-top;
+}
+
+.editNote {
+  color: gray;
+}
+
+.deleteNote {
+  color: orange;
+}

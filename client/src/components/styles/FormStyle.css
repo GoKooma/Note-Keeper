@@ -1,0 +1,52 @@
+.formWrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.journal {
+  padding: 10px;
+  padding-top: 40px;
+  width: 80%;
+  max-width: 500px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.formTitle {
+  height: 20px;
+  padding: 10px;
+  font-size: 24px;
+}
+
+.formContent {
+  height: 500px;
+  padding: 10px;
+  font-size: 24px;
+  text-align: left;
+  vertical-align: text-top;
+}
+
+.formButton {
+  width: 120px;
+  height: 50px;
+  font-size: 22px;
+  border: none;
+  align-content: right;
+  padding: 10px;
+}
+
+.buttonWrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin-top: 15px;
+}
+
+.postStatus {
+  padding-left: 10px;
+  position: absolute;
+  font-size: 18px;
+}
