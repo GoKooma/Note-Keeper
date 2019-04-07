@@ -22,7 +22,6 @@
   padding: 10px;
   padding-top: 40px;
   width: 90%;
-  max-width: 800px;
   height: 100%;
   font-family: inherit;
 }
@@ -36,6 +35,10 @@
   font-family: inherit;
 }
 
+.formTitle:focus {
+  outline: none;
+}
+
 .formContent {
   width: 97%;
   height: 500px;
@@ -47,19 +50,25 @@
   font-family: inherit;
 }
 
+.formContent:focus {
+  outline: none;
+}
+
 .formButton {
   width: 120px;
   height: 50px;
   font-size: 22px;
   border: none;
-  align-content: right;
   padding: 10px;
   cursor: pointer;
 }
 
+.formButton:focus {
+  outline: none;
+}
+
 .buttonWrapper {
   display: flex;
-  flex-direction: row;
   justify-content: flex-end;
   margin-top: 15px;
 }
