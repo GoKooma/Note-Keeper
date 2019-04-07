@@ -15,6 +15,14 @@ class Write extends React.Component {
     this.handlePost = this.handlePost.bind(this);
   }
 
+  componentDidMount() {
+    this.mounted = true;
+  }
+
+  componentWillUnmount() {
+    this.mounted = false;
+  }
+
   updateTitle(e) {
     this.setState({
       title: e.target.value
@@ -34,8 +42,7 @@ class Write extends React.Component {
         title: this.state.title,
         content: this.state.content
       })
-      .then((res) => {
-        console.log(res);
+      .then(() => {
         this.setState({
           title: '',
           content: '',
@@ -46,7 +53,7 @@ class Write extends React.Component {
       .catch(err => {
         console.error(err);
         this.setState({
-          posted: 'Posting Failed...'
+          posted: 'Posting Failed... Please fill in both title and content'
         })
       })
 
@@ -68,6 +75,7 @@ class Write extends React.Component {
             onChange={this.updateTitle}
             placeholder="Title"
           />
+          <br />
           <textarea
             className={FormStyle.formContent}
             value={this.state.content}
