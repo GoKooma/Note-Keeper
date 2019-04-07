@@ -20,7 +20,12 @@ class App extends React.Component {
   }
 
   componentDidMount() {
+    this.mounted = true;
     this.fetchNotes();
+  }
+
+  componentWillUnmount() {
+    this.mounted = false;
   }
 
   fetchNotes() {
@@ -51,7 +56,6 @@ class App extends React.Component {
   handleDelete(e, id) {
     let noteID = this.state.notes[id]._id
     e.preventDefault();
-    console.log(noteID)
     axios
       .delete(`/api/note/${noteID}`, { params: { id: noteID }})
       .then(() => {
