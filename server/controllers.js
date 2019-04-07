@@ -14,7 +14,7 @@ module.exports = {
   },
   // delete the note with given id
   deleteNote: (req, res) => {
-    let { id } = req.body;
+    let { id } = req.params;
     db.delete(id, (err) => {
       if (err) {
         console.error(err);
@@ -37,7 +37,7 @@ module.exports = {
   },
   // edit the content of the note
   updateNote: (req, res) => {
-    db.update(req.body, (err) => {
+    db.update(req.params, (err) => {
       if (err) {
         console.error(err);
         res.status(404).send(err);
