@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import FormStyle from './styles/FormStyle.css'
 
 class Write extends React.Component {
   constructor(props) {
@@ -53,28 +54,34 @@ class Write extends React.Component {
         this.setState({ posted: '' })
       }, 5000)
     
-      console.log("POST")
   }
 
   render() {
     return (
-      <div>
-        <form id="journal" onSubmit={this.handlePost}>
+      <div className={FormStyle.formWrapper}>
+        <div className={FormStyle.postStatus}>{this.state.posted}</div>
+        <form className={FormStyle.journal} onSubmit={this.handlePost}>
           <input
-            className="title"
+            className={FormStyle.formTitle}
             type="text"
             value={this.state.title}
             onChange={this.updateTitle}
+            placeholder="Title"
           />
           <input
-            className="content"
+            className={FormStyle.formContent}
             type="text"
             value={this.state.content}
             onChange={this.updateContent}
+            placeholder="Note"
           />
-          <button type="submit">Post</button>
+          <div className={FormStyle.buttonWrapper}>
+            <button 
+              type="submit"
+              className={FormStyle.formButton}
+            >Post</button>
+          </div>
         </form>
-        {this.state.posted}
       </div>
     )
   }
