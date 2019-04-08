@@ -37,7 +37,7 @@ module.exports = {
   },
   // edit the content of the note
   updateNote: (req, res) => {
-    db.update(req.params, (err) => {
+    db.update(req.body.params, (err) => {
       if (err) {
         console.error(err);
         res.status(404).send(err);
