@@ -1,6 +1,6 @@
 const express = require('express');
 const parser = require('body-parser');
-const morgan = require('morgan');
+// const morgan = require('morgan');
 const path = require('path');
 const cors = require('cors');
 const port = 3000;
@@ -13,7 +13,7 @@ app.use(parser.urlencoded({ extended: true }));
 
 app.use(cors());
 
-app.use(morgan('dev'));
+// app.use(morgan('dev'));
 
 app.use(express.static(path.resolve(__dirname, '../client/dist')));
 

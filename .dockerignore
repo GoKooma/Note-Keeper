@@ -1,0 +1,19 @@
+# Ignore client files and system files
+client
+.DS_Store
+.git
+.gitignore
+
+# Ignore markdown files, and node modules
+README.md
+node_modules
+
+env.*
+Dockerfile
+
+# Avoid storing log files
+npm-debug.log
+pids
+*.pid
+logs
+*.log
