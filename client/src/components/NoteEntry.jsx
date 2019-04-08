@@ -4,6 +4,7 @@ import NoteStyle from './styles/NoteStyle.css'
 const NoteEntry = (props) => {
   let date = new Date(props.date);
   let dateInUserTZ = new Date(date.toUTCString());
+
   // format date in a readable way
   let datePosted = dateInUserTZ.toString().substring(0,21) + dateInUserTZ.toString().substring(33);
 
