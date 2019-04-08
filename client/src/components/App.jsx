@@ -10,12 +10,16 @@ class App extends React.Component {
     this.state = {
       notes: [{title: "Welcome to Note Keeper!", content: "Loading..."}],
       myNotesTabVisibility: true,
-      writeTabVisibility: false
+      writeTabVisibility: false,
+      noteToEdit: null,
+      editing: false,
+      editMsg: ''
     }
     this.handleMyNotesTab = this.handleMyNotesTab.bind(this);
     this.handleWriteTab = this.handleWriteTab.bind(this);
     this.fetchNotes = this.fetchNotes.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
+    this.notifyUpdate = this.notifyUpdate.bind(this);
     this.handleUpdate = this.handleUpdate.bind(this);
   }
 
@@ -64,18 +68,57 @@ class App extends React.Component {
       .catch(err => console.error(err));
   }
 
-  handleUpdate(e, id) {
+  notifyUpdate(e, id) {
     e.preventDefault();
-    console.log("EDIT THE NOTE")
+    this.setState({
+      noteToEdit: id,
+      editing: true
+    })
+  }
+
+  handleUpdate(e, id, title, content) {
+    e.preventDefault();
+    let noteID = this.state.notes[id]._id
+    axios
+      .put(`api/edit/${noteID}`, {params: {
+        id: noteID,
+        title: title,
+        content: content
+      }})
+      .then(() => {
+        this.setState({
+          noteToEdit: null,
+          editing: false,
+          editMsg: 'Success!'
+        });
+        this.fetchNotes();
+      })
+      .catch(err => {
+        console.error(err);
+        this.setState({
+          editMsg: 'Failed to update...',
+          editing: true
+        })
+      })
+
+      setTimeout(() => {
+        this.setState({ editMsg: '' })
+      }, 3500)
   }
 
   render() {
     let myNotes, writeForm;
     this.state.myNotesTabVisibility ? myNotes = <NotesList 
       notes={this.state.notes} 
+      noteToEdit={this.state.noteToEdit}
       handleDelete={this.handleDelete}
+      notifyUpdate={this.notifyUpdate}
       handleUpdate={this.handleUpdate}
+      fetchNotes={this.fetchNotes}
+      editMsg={this.state.editMsg}
+      editing={this.state.editing}
     /> : null;
+
     this.state.writeTabVisibility ? writeForm = <Write fetchNotes={this.fetchNotes} /> : null;
 
     return (
