@@ -15,10 +15,12 @@ module.exports = {
   },
   // edit the content of the note
   update: (params, callback) => {
-    let { id, content } = params;
+    let { id, title, content } = params;
     return Notes.updateOne(
       { _id: id },
-      { content: content }, 
-      callback);
+      { 
+        title: title,
+        content: content 
+      }, callback);
   }
 }
