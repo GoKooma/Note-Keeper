@@ -2,14 +2,32 @@ import React from 'react';
 import axios from 'axios';
 import FormStyle from './styles/FormStyle.css'
 
+let writeTitle, writeContent, updateMsg;
+
 class Write extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      title: '',
-      content: '',
-      posted: ''
+
+    if (!this.props.title) {
+      writeTitle = '';
+      writeContent = '';
+    } else {
+      writeTitle = this.props.title;
+      writeContent = this.props.content;
     }
+
+    if (this.props.editMsg) {
+      updateMsg = this.props.editMsg;
+    } else {
+      updateMsg = '';
+    }
+
+    this.state = {
+      title: writeTitle,
+      content: writeContent,
+      posted: updateMsg
+    }
+
     this.updateTitle = this.updateTitle.bind(this);
     this.updateContent = this.updateContent.bind(this);
     this.handlePost = this.handlePost.bind(this);
@@ -19,8 +37,8 @@ class Write extends React.Component {
     this.mounted = true;
   }
 
-  componentWillUnmount() {
-    this.mounted = false;
+  componentWillUpdate() {
+
   }
 
   updateTitle(e) {
@@ -60,14 +78,28 @@ class Write extends React.Component {
       setTimeout(() => {
         this.setState({ posted: '' })
       }, 3500)
-    
   }
-
+  
   render() {
+    let writeFormButton;
+
+    if (this.props.editing) {
+      writeFormButton = <button 
+        type="submit"
+        className={FormStyle.formButton}
+        onClick={(e) => this.props.handleUpdate(e, this.props.id, this.state.title, this.state.content)}
+      >Edit</button>
+    } else {
+      writeFormButton = <button 
+        type="submit"
+        className={FormStyle.formButton}
+        onClick={this.handlePost}
+      >Post</button>
+    }
     return (
       <div className={FormStyle.formWrapper}>
         <div className={FormStyle.postStatus}>{this.state.posted}</div>
-        <form className={FormStyle.journal} onSubmit={this.handlePost}>
+        <form className={FormStyle.journal}>
           <textarea
             className={FormStyle.formTitle}
             type="text"
@@ -83,10 +115,7 @@ class Write extends React.Component {
             placeholder="Note"
           />
           <div className={FormStyle.buttonWrapper}>
-            <button 
-              type="submit"
-              className={FormStyle.formButton}
-            >Post</button>
+            {writeFormButton}
           </div>
         </form>
       </div>
