@@ -7,7 +7,7 @@ const usr = process.env.MDB_USER;
 
 // Connect to mongodb
 if (DB_ENV === "REMOTE_DB") {
-  mongoose.connect(`mongodb+srv://${usr}:${PASSPHRASE}/${DB_URL}`, { useNewUrlParser: true });
+  mongoose.connect(`mongodb+srv://${usr}:${PASSPHRASE}@${DB_URL}`, { useNewUrlParser: true });
 } else if (DB_ENV === "LOCAL") {
   mongoose.connect(`mongodb://localhost/note-keeper`, { useNewUrlParser: true });
 }
